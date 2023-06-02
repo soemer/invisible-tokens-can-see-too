@@ -8,15 +8,23 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
+
       - name: Zip Files
+        id: zip-files
         working-directory: ./
-        run: zip -r ./module.zip ./*
+        run: zip -r ./module.zip ./* -x README.md
+
       - name: Get Version
         shell: bash
         id: get-version
-        run: echo "::set-output name=version::$(node ./.github/workflows/get-version.js)"
+        run: echo "version=$(node ./.github/workflows/get-version.js)" >> $GITHUB_OUTPUT
+
       - name: Create Release
         id: create-release
         uses: ncipollo/release-action@v1
@@ -26,5 +34,5 @@ jobs:
           draft: false
           prerelease: false
           token: ${{ secrets.GITHUB_TOKEN }}
-          artifacts: './module.zip, ./module.json'
+          artifacts: 'module.zip,module.json'
           tag: ${{ steps.get-version.outputs.version }}

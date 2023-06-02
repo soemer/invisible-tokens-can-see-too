@@ -6,7 +6,7 @@
 		"name": "Martin Soemer"
 		}],
 	"url":"https://github.com/soemer/invisible-tokens-can-see-too",
-	"manifest": "https://github.com/soemer/invisible-tokens-can-see-too/releases/download/v0.1.0/module.json",
+	"manifest": "https://github.com/soemer/invisible-tokens-can-see-too/releases/latest/download/module.json",
 	"download": "https://github.com/soemer/invisible-tokens-can-see-too/download/v0.1.0/InvisibleTokensCanSeeToo.zip",
 	"version": "0.1.0",
 	"compatibility": {
