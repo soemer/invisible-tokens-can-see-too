@@ -1,0 +1,34 @@
+{
+	"id": "invisible-tokens-can-see-too",
+	"title": "Invisible tokens can see too",
+	"description": "Let invisible tokens have vision",
+	"authors": [{
+		"name": "Martin Soemer"
+		}],
+	"url":"https://github.com/soemer/invisible-tokens-can-see-too",
+	"manifest": "https://github.com/soemer/invisible-tokens-can-see-too/releases/download/v0.1.0/module.json",
+	"download": "https://github.com/soemer/invisible-tokens-can-see-too/download/v0.1.0/InvisibleTokensCanSeeToo.zip",
+	"version": "0.1.0",
+	"compatibility": {
+		"minimum": "10",
+		"verified": "11"
+	},
+	"esmodules": [
+		"scripts/invisibleTokensCanSeeToo.js"
+	],
+	"languages": [{
+		"lang": "en",
+		"name": "English",
+		"path": "lang/en.json"
+	}],
+	"relationships": {
+		"requires": [{
+            "id": "lib-wrapper",
+            "type": "module",
+            "compatibility": {
+                "minimum": "1.0.0.0",
+                "verified": "1.12.12.1"
+			}
+        }]
+	}
+}

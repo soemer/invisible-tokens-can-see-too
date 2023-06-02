@@ -1,0 +1,11 @@
+{
+	"invisible-tokens-can-see-too": {
+		"InvisibleTokensCanSeeToo": "Invisible Tokens can see too",
+		"Settings": {
+			"InvisibleTokensCanSee": {
+				"Name": "Invisible tokens can see",
+				"Hint": "By default invisible tokens loose sight. If you check this setting, this behavior changes."
+			}
+		}
+	}
+}
