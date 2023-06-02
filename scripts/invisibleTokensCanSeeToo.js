@@ -10,7 +10,7 @@ Hooks.once('setup', ()=>{
 });
 
 function registerSettings() {
-    game.settings.register(MODULE_NAME, PROPERTY_MODULE_ENABLED, {
+    game.settings.register(MODULE_ID, PROPERTY_MODULE_ENABLED, {
 		name: game.i18n.localize(MODULE_ID + '.Settings.InvisibleTokensCanSee.Name'),
 		hint: game.i18n.localize(MODULE_ID + '.Settings.InvisibleTokensCanSee.Hint'),	
 		scope: 'world',
