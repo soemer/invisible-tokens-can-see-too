@@ -56,7 +56,7 @@ function registerVisionSourceCalculation() {
 }
 
 function isVisionModified(token) {
-	let moduleEnabled = game.settings.get(MODULE_NAME, PROPERTY_MODULE_ENABLED);
+	let moduleEnabled = game.settings.get(MODULE_ID, PROPERTY_MODULE_ENABLED);
 			
 	if (moduleEnabled) {
 		return token.hasSight && token.observer;
