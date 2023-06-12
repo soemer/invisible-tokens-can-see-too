@@ -10,20 +10,20 @@ Hooks.once('setup', ()=>{
 });
 
 function registerSettings() {
-    game.settings.register(MODULE_ID, PROPERTY_MODULE_ENABLED, {
+	game.settings.register(MODULE_ID, PROPERTY_MODULE_ENABLED, {
 		name: game.i18n.localize(MODULE_ID + '.Settings.InvisibleTokensCanSee.Name'),
-		hint: game.i18n.localize(MODULE_ID + '.Settings.InvisibleTokensCanSee.Hint'),	
+		hint: game.i18n.localize(MODULE_ID + '.Settings.InvisibleTokensCanSee.Hint'),
 		scope: 'world',
 		config: true,
 		type: Boolean,
 		default: true
-    });
+	});
 }
 
 function registerDependencyChecks() {
 	Hooks.once("canvasInit", () => {
-        if (!game.modules.get("lib-wrapper")?.active) {
-            Notifications.error('libWrapper is required!', { permanent: true, console: false });
+		if (!game.modules.get("lib-wrapper")?.active) {
+			Notifications.error('libWrapper is required!', { permanent: true, console: false });
 			Console.error("libWrapper is not enabled");
 		}
 	});
@@ -37,30 +37,27 @@ function registerVisionSourceCalculation() {
 			if (wrapped()) {
 				return true;
 			}
-			
-			return isVisionModified(this);
+
+			// If module is not enabled or token is not hidden, don't change the behavior
+			if (!game.settings.get(MODULE_ID, PROPERTY_MODULE_ENABLED) || !this.document.hidden) return false;
+
+			if (!canvas.effects.visibility.tokenVision || !this.hasSight || game.user.isGM) return false;
+			return this.controlled || this.isOwner;
 		},
 		'WRAPPER');
-		
+
 	libWrapper.register(
 		MODULE_ID,
-		'Token.prototype.isVisible', 
+		'Token.prototype.isVisible',
 		function(wrapped) {
 			if (wrapped()) {
 				return true;
 			}
-			
-			return isVisionModified(this);
+
+			// If module is not enabled or token is not hidden, don't change the behavior
+			if (!game.settings.get(MODULE_ID, PROPERTY_MODULE_ENABLED) || !this.document.hidden) return false;
+
+			return !game.user.isGM && (this.controlled || this.isOwner);
 		},
 		'WRAPPER');
-}
-
-function isVisionModified(token) {
-	let moduleEnabled = game.settings.get(MODULE_ID, PROPERTY_MODULE_ENABLED);
-			
-	if (moduleEnabled) {
-		return token.hasSight && token.observer;
-	}
-		
-	return false;
 }
