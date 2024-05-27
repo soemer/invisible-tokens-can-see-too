@@ -51,7 +51,7 @@ function registerVisionSourceCalculation() {
 			// If setting is not enabled or token is not hidden, don't change the behavior
 			if (!game.settings.get(MODULE_ID, PROPERTY_INVISIBLE_TOKENS_CAN_SEE) || !this.document.hidden) return false;
 
-			if (!canvas.effects.visibility.tokenVision || !this.hasSight || game.user.isGM) return false;
+			if (!canvas.visibility.tokenVision || !this.hasSight || game.user.isGM) return false;
 			return this.controlled || this.isOwner;
 		},
 		'WRAPPER');
